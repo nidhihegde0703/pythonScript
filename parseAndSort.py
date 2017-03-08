@@ -16,25 +16,31 @@ import operator
 
 # assuming the data is accurate
 file = open("file.json", "r")
-data = json.load(file)
 
-file.close()
-
-list = []
-
-for i in data['Persons']:
-    #validate(i, schema)
-    list.append(i)
+try:
+    data = json.load(file)
     
+    file.close()
 
-print("Displaying the List sorted by name : ")
-list.sort(key=operator.itemgetter('Name'))
+    list = []
 
-for elm in list:
-    print(elm)
+    for i in data['Persons']:
+        #validate(i, schema)
+        list.append(i)
 
-print("Displaying the List sorted by age : ")
-list.sort(key=operator.itemgetter('Age'))
+    print("Displaying the List sorted by name : ")
+    list.sort(key=operator.itemgetter('Name'))
 
-for elm in list:
-    print(elm)
+    for elm in list:
+        print(elm)
+
+    print("Displaying the List sorted by age : ")
+    list.sort(key=operator.itemgetter('Age'))
+
+    for elm in list:
+        print(elm)
+    
+except ValueError:
+    print ("Please enter valid json")
+
+
